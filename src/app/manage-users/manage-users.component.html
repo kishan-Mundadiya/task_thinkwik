@@ -1,0 +1,110 @@
+<app-header></app-header>
+
+<div class="table-view p-5">
+  <h3>Users</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Event Name</th>
+        <th scope="col">Event Place</th>
+        <!-- <th scope="col">Created By</th> -->
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of events
+            | paginate
+              : {
+                  id: 'userTable',
+                  itemsPerPage: limit,
+                  currentPage: currentPage,
+                  totalItems: total
+                };
+          let i = index
+        "
+      >
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.place }}</td>
+        <!-- <td>{{item.created_by}}</td> -->
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm m-1"
+            (click)="open(viewContent, item)"
+          >
+            View
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm m-1"
+            *ngIf="Global.loginUser.userId != item.user_id"
+            (click)="joinEvent(item)"
+          >
+            Join
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls
+    id="userTable"
+    class="text-center"
+    (pageChange)="getEvents($event)"
+  ></pagination-controls>
+</div>
+
+<ng-template #viewContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Event Details</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td width="40%">Name</td>
+          <td>{{ selectedEvent.name }}</td>
+        </tr>
+        <tr>
+          <td width="40%">Event Address</td>
+          <td>{{ selectedEvent.place }}</td>
+        </tr>
+        <tr>
+          <td width="40%">Organizor Name</td>
+          <td>{{ selectedEvent.created_by }}</td>
+        </tr>
+        <tr>
+          <td width="40%">Organizor Email</td>
+          <td>{{ selectedEvent.email }}</td>
+        </tr>        
+      </tbody>
+    </table>
+    <table class="table" *ngIf="participants.length > 0;else second">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">participant Name</th>
+            <th scope="col">participant Email</th>
+          </tr>
+          <tr *ngFor="let user of participants;let i = index">
+            <th scope="col">{{i+1}}</th>
+            <th scope="col">{{user.userName}}</th>
+            <th scope="col">{{user.userEmail}}</th>
+          </tr>
+        </thead>
+    </table>
+    <ng-template #second>
+        <b>No participants Joined this event</b>
+    </ng-template>
+  </div>
+</ng-template>

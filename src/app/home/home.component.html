@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div>
+    <!-- <div class="successPage row align-center"> -->
+    </div>
+    
+<div class="table-view p-5">
+    <h3>Events Joined</h3>
+    <div class=" row align-center mb-4">
+        <div class="card w-full text-end">
+            <button  class="createEventButton" (click)="open(editContent,{})" >create Event</button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Event Name</th>
+                <th scope="col">Event Place</th>
+                <!-- <th scope="col">Created By</th> -->
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of joinEvents let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.e_name}}</td>
+                <td>{{item.e_place}}</td>
+                <!-- <td>{{item.created_by}}</td> -->
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm m-1" (click)="open(confirmModal,item)">Leave</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class=" row align-center mt-4">
+        <div *ngIf="joinEvents.length == 0" class="no-data-card w-full text-center">
+           <b>NO Events Joined !!  <a [routerLink]="'/manage-users'"> lets join</a></b>
+        </div>
+    </div>
+   
+</div>
+
+
+<ng-template #editContent let-c="close" let-d="dismiss">
+    <form [formGroup]="eventForm"  (ngSubmit)="createEvent()" >
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Create New Event</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="name">Event Name</label>
+                <input type="text" formControlName="eventName" class="form-control" id="name" aria-describedby="name" placeholder="Event Name">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+            <div class="form-group">
+                <label for="email">Event address</label>
+                <input type="email" class="form-control" formControlName="eventAddress" id="email" aria-describedby="email" placeholder="Event Address">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary float-right">Submit</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #confirmModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Confirm</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure want to Leave Event!</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="c('Save click')">No</button>
+        <button type="button" (click)="leaveEvent(selectedEvent)" class="btn btn-outline-success" (click)="c('Save click')">Yes</button>
+    </div>
+</ng-template>

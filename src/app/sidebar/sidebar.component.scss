@@ -1,0 +1,38 @@
+.sidenav {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background: -webkit-linear-gradient(to right, #0450c2, #071a88);
+    background: linear-gradient(to right, #0450c2, #071a88);
+    overflow-x: hidden;
+    padding-top: 10px;
+    position: fixed;
+}
+
+.sidenav a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    display: block;
+    margin: 2px 0px;
+    transition: 0.5s;
+}
+
+.sidenav .active {
+    background-color: #000000b4;
+    color: white;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: #000000b4;
+}
+
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}

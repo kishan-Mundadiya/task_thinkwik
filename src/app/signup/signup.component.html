@@ -1,0 +1,60 @@
+<br>
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+        <form action="#" (ngSubmit)="signup()" [formGroup]="signupForm">
+            <h1 class="mb-3">Sign Up</h1>
+            <div class="social-container m-0">
+                <div *ngIf="(signupForm.controls['email'].invalid && signupForm.controls['email'].touched);else second" class="">
+                    <p *ngIf="signupForm.controls['email'].errors!['required']" class="m-0">
+                        Email is required.
+                    </p>
+                    <p *ngIf="signupForm.controls['email'].errors!['pattern']" class="m-0">
+                        Email is in valid.
+                    </p>
+                </div>
+                <ng-template #second>
+                    <ng-container *ngIf="(signupForm.controls['password'].invalid && signupForm.controls['password'].touched);else third">
+                        <p class="m-0">
+                            password is required
+                        </p>
+
+                    </ng-container>
+                </ng-template>
+                <ng-template #third>
+                    <ng-container *ngIf="(signupForm.controls['age'].invalid && signupForm.controls['age'].touched);else fourth">
+                            age is required.
+                    </ng-container>
+                </ng-template>
+                <ng-template #fourth>
+                    <ng-container *ngIf="(signupForm.controls['name'].invalid && signupForm.controls['name'].touched);else fifth">
+                        name is required.
+                    </ng-container>
+                </ng-template>
+                <ng-template #fifth>
+                    <ng-container *ngIf="(signupForm.controls['confirmPassword'].invalid && signupForm.controls['confirmPassword'].touched)">
+                        confirm Password is required.
+                    </ng-container>
+                </ng-template>
+
+            </div>
+            <input type="text" formControlName="name" placeholder="Name" />
+            <input type="email" formControlName="email" placeholder="Email" />
+            <input type="date" formControlName="dob" placeholder="Date of Birth" />
+            <input type="number" formControlName="age" placeholder="age" />
+            <input type="password" formControlName="password" placeholder="Password" />
+            <input type="password" formControlName="confirmPassword" placeholder="Confirm password" />
+            <input type="file" (change)="fileChange($event)"   id="myFile" name="image">
+            
+            <div class="form-group full-width">
+                <label for="exampleFormControlSelect1 " class="float-left text-secondary">Select gender type</label>
+                <select class="form-control" [(ngModel)]="selectedUserType" formControlName="userType" id="exampleFormControlSelect1">
+                  <option  value="male">male</option>
+                  <option value="female">female</option>
+                  <option value="others">others</option>
+                </select>
+            </div>
+            <button class="mt-2" [disabled]="!signupForm.valid" [ngClass]="{'btn-disable':!signupForm.valid}">Sign Up</button>
+            <b>Already have an account <a [routerLink]="['/sign-in']" style="color: blue;">Sign In?</a></b>
+        </form>
+    </div>
+</div>

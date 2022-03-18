@@ -1,0 +1,12 @@
+::ng-deep .ngx-pagination {
+    display: flex !important;
+    float: right;
+    color: #af7c05;
+}
+
+::ng-deep .ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #9c6906 !important;
+    color: #fefefe;
+    cursor: default;
+}

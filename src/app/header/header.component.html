@@ -1,0 +1,15 @@
+<div class="topnav">
+    <div class="">
+        <a class="logo" href="#home">
+            <img itemprop="image" class="qodef-light-logo" src="../../assets/images/logo.png" alt="light logo">
+        </a>
+        <a [routerLink]="['/home']" class="menu"  [ngClass]="{'active': currenturl == '/home' }">Home</a>
+        <a [routerLink]="['/user-profile']" class="menu" [ngClass]="{'active': currenturl == '/user-profile' || currenturl == '/success' }">Profile</a>
+        <a [routerLink]="['/manage-users']" class="menu"  [ngClass]="{'active': currenturl == '/manage-users' }">Events</a>
+        <a [routerLink]="['/settings']" class="menu"  [ngClass]="{'active': currenturl == '/settings' }">Settings</a>
+    </div>
+
+    <div class="right-menu">
+        <a (click)="Global.logout()" class="menu">Logout</a>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<br><br><br>
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+        <form action="#" [formGroup]="loginForm">
+            <h1 class="mb-3">Sign In</h1>
+            <div class="social-container m-0 text-left text-danger">
+                <div *ngIf="(loginForm.controls['email'].invalid && loginForm.controls['email'].touched);else second" class="">
+                    <p *ngIf="loginForm.controls['email'].errors!['required']" class="m-0 ">
+                        Email is required.
+                    </p>
+                    <p *ngIf="loginForm.controls['email'].errors!['pattern']" class="m-0 ">
+                        Email is invalid.
+                    </p>
+                </div>
+                <ng-template #second>
+                    <p *ngIf="(loginForm.controls['password'].invalid && loginForm.controls['password'].touched)" class="">
+                        password is required
+                    </p>
+                </ng-template>
+            </div>
+            <input type="email" formControlName="email" placeholder="Email" />
+            <input type="password" formControlName="password" placeholder="Password" />
+            <a><button (click)="login()">Sign In</button></a>
+            <b>Create new Account <a [routerLink]="['/sign-up']" style="color: blue;">Sign Up?</a></b>
+        </form>
+    </div>
+    <!-- <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <a [routerLink]="['/sign-up']"><button class="ghost" id="signUp">Sign Up</button></a>
+            </div>
+        </div>
+    </div> -->
+</div>

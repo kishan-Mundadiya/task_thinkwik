@@ -1,0 +1,55 @@
+<app-header></app-header>
+
+<div class="userProfile p-5">
+    <h4>User Profile</h4>
+
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="userForm" (ngSubmit)="updateUserDetails()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="name" placeholder="Enter name">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="email" placeholder="Enter email">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+                <div class="form-group">
+                    <label for="phone">dob</label>
+                    <input type="date" class="form-control" id="phone" formControlName="dob" aria-describedby="dob" placeholder="Enter date">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" id="age" formControlName="age" aria-describedby="age" placeholder="Enter age">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+                <div class="form-group">
+                    <img [src]="Global.loginUser.image" alt="" style="height: 70px; width: 70px;"><br/>
+                    <input type="file"  id="myFile" (change)="fileChange($event)" formControlName="age" name="image"  aria-describedby="image" placeholder="user Image">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+
+                <label class="m-2">Gender : </label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="male" value="male">
+                    <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female" formControlName="gender" value="female">
+                    <label class="form-check-label" for="female">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="other" formControlName="gender" value="other">
+                    <label class="form-check-label" for="other">Other</label>
+                </div>
+                    <button type="submit" class="btn btn-success float-right">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>

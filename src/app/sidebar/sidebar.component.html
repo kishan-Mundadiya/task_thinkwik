@@ -1,0 +1,6 @@
+<div class="sidenav">
+    <a [routerLink]="['/home']"  [ngClass]="{'active': url == '/home' }">Home</a>
+    <a [routerLink]="['/user-profile']" [ngClass]="{'active': url == '/user-profile' || url == '/success' }">Profile</a>
+    <a [routerLink]="['/manage-users']"  [ngClass]="{'active': url == '/manage-users' }">Events</a>
+    <a [routerLink]="['/settings']"  [ngClass]="{'active': url == '/settings' }">Settings</a>
+</div>
